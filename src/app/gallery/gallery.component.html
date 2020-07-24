@@ -1,0 +1,16 @@
+<div class="card-columns">
+<div class="card" *ngFor="let curPhoto of flickerResponse['photos']['photo']">
+   <img class="card-img-top" src="{{curPhoto.imgUrl}}" alt="Alternative Image" />
+   <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">
+        Uploaded by Ashish on date
+      </p>
+      <p class="card-text">Image Title</p>
+      <hr>
+      <p class="card-text">
+        <small class="text-muted">Image tag</small>
+      </p>
+      </div>
+</div>
+</div>
