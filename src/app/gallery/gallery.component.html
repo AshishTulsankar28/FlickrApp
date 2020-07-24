@@ -1,16 +1,21 @@
+<!-- card start-->
 <div class="card-columns">
-<div class="card" *ngFor="let curPhoto of flickerResponse['photos']['photo']">
+<div class="card" *ngFor="let curPhoto of photos | paginate: config" >
    <img class="card-img-top" src="{{curPhoto.imgUrl}}" alt="Alternative Image" />
    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
+      <!--<h5 class="card-title">Card title</h5>-->
       <p class="card-text">
-        Uploaded by Ashish on date
+        Upload Date - {{curPhoto.uploadDate}}
       </p>
-      <p class="card-text">Image Title</p>
-      <hr>
+      <p class="card-text">{{curPhoto.title}}</p>
+      <!--<hr>
       <p class="card-text">
         <small class="text-muted">Image tag</small>
-      </p>
-      </div>
+      </p>-->
+      </div>  
 </div>
+</div>
+<!-- card ends-->
+<div>
+  <pagination-controls style="float: right;" (pageChange)="pageChanged($event)"></pagination-controls>
 </div>

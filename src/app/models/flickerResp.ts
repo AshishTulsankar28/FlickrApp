@@ -1,4 +1,3 @@
-import { Url } from "url";
 
 export interface FlickerResp {
 
@@ -7,8 +6,8 @@ export interface FlickerResp {
 
 }
 
-interface photo{
-
+export interface photo{
+dateupload:number,
 farm: number,
 has_comment: number,
 id: String,
@@ -20,5 +19,6 @@ owner:  String,
 secret: String,
 server: String,
 title:  String,
-imgUrl: String;
+imgUrl: String,
+uploadDate:string
 }
