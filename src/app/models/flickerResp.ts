@@ -21,4 +21,7 @@ server: String,
 title:  String,
 imgUrl: String,
 uploadDate:string
+rating:number,
+comment:string,
+commentBy:string
 }

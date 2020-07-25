@@ -25,14 +25,17 @@ export class GalleryComponent implements OnInit {
     combineLatest(response.photos.photo.map(photo=>{
       photo.imgUrl="https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + ".jpg";
       photo.uploadDate=new Date(photo.dateupload*1000).toLocaleString();
+      photo.comment="Display comment";
+      photo.commentBy="Comment By";
     })
     );
-    //this.flickerResponse=response;
+    
     this.photos=response.photos.photo;
-    this.config.maxSize=response.photos.pages;//Total number of pages
+    this.config.maxSize=response.photos.pages;
     this.config.totalItems=response.photos.total;
     this.config.itemsPerPage=response.photos.perpage;
-    console.log("config",this.config);
+    //this.flickerResponse=response;
+    //console.log("config",this.config," photos ",this.photos);
   }, error => {
     console.log(error);
   });
@@ -44,10 +47,8 @@ export class GalleryComponent implements OnInit {
   }
 
   pageChanged(pageNo:number) {
-    // update current page of items
     this.config.currentPage=pageNo;
     this.getPhotoFromFlicker(this.config.currentPage);
-    console.log("on page change",this.config);
 }
 
 }

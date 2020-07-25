@@ -1,17 +1,25 @@
 <!-- card start-->
+<style>
+  #inline{width:100%;display:flex;}
+.one{width:66%;margin:10px;}
+.two{width:17%;margin:10px;}
+.three{width:17%;margin:10px;}
+</style>
+
 <div class="card-columns">
 <div class="card" *ngFor="let curPhoto of photos | paginate: config" >
    <img class="card-img-top" src="{{curPhoto.imgUrl}}" alt="Alternative Image" />
    <div class="card-body">
-      <!--<h5 class="card-title">Card title</h5>-->
       <p class="card-text">
         Upload Date - {{curPhoto.uploadDate}}
       </p>
-      <p class="card-text">{{curPhoto.title}}</p>
-      <!--<hr>
-      <p class="card-text">
-        <small class="text-muted">Image tag</small>
-      </p>-->
+      <div id="inline">
+        <div class="one">{{curPhoto.title}}</div>
+        <div class="two"><i title="{{curPhoto.comment}}" class="far fa-comment"></i></div>
+        <div class="three"><i title="{{curPhoto.commentBy}}" class="far fa-user"></i></div>
+      </div>
+      <hr>
+      <bar-rating [(rate)]="curPhoto.rating" [max]="5"></bar-rating>
       </div>  
 </div>
 </div>

@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { BarRatingModule } from "ngx-bar-rating";
+
 
 import { AppComponent } from './app.component';
 import { GalleryComponent } from './gallery/gallery.component';
@@ -14,8 +16,9 @@ import { GalleryComponent } from './gallery/gallery.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    NgxPaginationModule
-  ],
+    NgxPaginationModule,
+    BarRatingModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
