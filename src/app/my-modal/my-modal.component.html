@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{curPhoto.title}}</h1>
+<div mat-dialog-content>
+  <span>Comment:</span>
+  <mat-form-field>
+    <input matInput [(ngModel)]="curPhoto.comment">
+  </mat-form-field>
+  <span>Comment By:</span>
+  <mat-form-field>
+    <input matInput [(ngModel)]="curPhoto.commentBy">
+  </mat-form-field>
+  <span>Rating:</span>
+  <mat-form-field>
+    <input type="number" min="1" max="5" matInput [(ngModel)]="curPhoto.rating">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No, Thanks!</button>
+  <button [disabled]="curPhoto.rating>5" mat-button [mat-dialog-close]="curPhoto" cdkFocusInitial>Okay</button>
+</div>

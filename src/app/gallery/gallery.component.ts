@@ -2,6 +2,9 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import {FlickrService} from '../flickr.service';
 import {FlickerResp,photo} from '../models/flickerResp';
 import { combineLatest } from 'rxjs';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MyModalComponent } from '../my-modal/my-modal.component';
+
 
 @Component({
   selector: 'app-gallery',
@@ -9,12 +12,12 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
-  //flickerResponse: FlickerResp;
   photos:Array<photo>;
   display:boolean=false;
   config={maxSize:0,itemsPerPage:0,currentPage:1,totalItems:0};
 
-  constructor(private flickerService: FlickrService) { 
+  constructor(private flickerService: FlickrService,
+    public dialog: MatDialog) { 
 
   }
 
@@ -34,8 +37,6 @@ export class GalleryComponent implements OnInit {
     this.config.maxSize=response.photos.pages;
     this.config.totalItems=response.photos.total;
     this.config.itemsPerPage=response.photos.perpage;
-    //this.flickerResponse=response;
-    //console.log("config",this.config," photos ",this.photos);
   }, error => {
     console.log(error);
   });
@@ -50,5 +51,17 @@ export class GalleryComponent implements OnInit {
     this.config.currentPage=pageNo;
     this.getPhotoFromFlicker(this.config.currentPage);
 }
+
+openDialog(curPhoto:photo): void {
+  const dialogRef = this.dialog.open(MyModalComponent, {
+    width: '250px',
+    data: curPhoto
+  });
+
+  dialogRef.afterClosed().subscribe(res => {
+    //console.log("response from pop up screen",res);
+  });
+}
+
 
 }
