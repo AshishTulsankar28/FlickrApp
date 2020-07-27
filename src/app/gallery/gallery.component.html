@@ -23,6 +23,7 @@ li span {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  font-weight: bold;
 }
 
 /* li a:hover:not(.active) {
@@ -38,20 +39,22 @@ li span {
   <li><span (click)="navigateTo(1)">Food</span></li>
   <li><span (click)="navigateTo(2)">Breakfast</span></li>
   <li><span (click)="navigateTo(3)">Nature</span></li>
+  <li><span (click)="navigateTo(4)">Summer</span></li>
+  <li><span (click)="navigateTo(5)">Comet</span></li>
+  <li><span (click)="navigateTo(6)">Wild-Life</span></li>
 </ul>
 
 <div *ngIf="display" class="card-columns">
 <div class="card" *ngFor="let curPhoto of photos | paginate: config" >
    <img class="card-img-top" src="{{curPhoto.imgUrl}}" alt="Alternative Image" />
    <div class="card-body">
-      <p class="card-text">
-        Upload Date - {{curPhoto.uploadDate}}
-      </p>
+      <p style="margin: 10px;" class="card-text">Upload Date - {{curPhoto.uploadDate}}</p>
       <div id="inline">
         <div class="one">{{curPhoto.title}}</div>
         <button  title="{{curPhoto.comment}}" class="two"><i (click)="openDialog(curPhoto)" class="far fa-comment"></i></button>
         <div title="{{curPhoto.commentBy}}" class="three"><i class="far fa-user"></i></div>
       </div>
+      <h5 style="margin: 10px;" *ngIf="curPhoto.comment">{{curPhoto.comment}} by {{curPhoto.commentBy}}</h5>
       <hr>
       <bar-rating [readOnly]=true [(rate)]="curPhoto.rating" [max]="5"></bar-rating>
       </div>  

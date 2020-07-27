@@ -27,12 +27,11 @@ export class GalleryComponent implements OnInit {
   getPhotoFromFlicker=(curPage:number,galleryId:string):void=>{
 
     this.flickerService.getPhotos(curPage,galleryId).subscribe( response => {
+    if(response && response.stat=="ok"){
     this.display=true;
     combineLatest(response.photos.photo.map(photo=>{
       photo.imgUrl="https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + ".jpg";
       photo.uploadDate=new Date(photo.dateupload*1000).toLocaleString();
-      photo.comment="Display comment";
-      photo.commentBy="Comment By";
     })
     );
     
@@ -40,6 +39,7 @@ export class GalleryComponent implements OnInit {
     this.config.maxSize=response.photos.pages;
     this.config.totalItems=response.photos.total;
     this.config.itemsPerPage=response.photos.perpage;
+    }
   }, error => {
     console.log(error);
   });
@@ -86,6 +86,15 @@ navigateTo(navIndex:number):void{
     break;
     case 3:
       this.curGalleryId=AppConstant.NATURE_GALLERY;
+    break;
+    case 4:
+      this.curGalleryId=AppConstant.SUMMER_GALLERY;
+    break;
+    case 5:
+      this.curGalleryId=AppConstant.COMET_GALLERY;
+    break;
+    case 6:
+      this.curGalleryId=AppConstant.WILDLIFE_GALLERY;
     break;
     default:
       this.curGalleryId=AppConstant.FOOD_GALLERY;
