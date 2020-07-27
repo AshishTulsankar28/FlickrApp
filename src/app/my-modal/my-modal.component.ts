@@ -1,5 +1,5 @@
 import { Component, OnInit,Inject  } from '@angular/core';
-import { photo } from '../models/flickerResp';
+import { ModalData } from '../models/flickerResp';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 
@@ -11,7 +11,7 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 export class MyModalComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<MyModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public curPhoto: photo) { }
+    @Inject(MAT_DIALOG_DATA) public curPhoto: ModalData) { }
 
   ngOnInit(): void {
   }

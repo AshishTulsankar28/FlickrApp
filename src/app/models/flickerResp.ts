@@ -25,3 +25,10 @@ rating:number,
 comment:string,
 commentBy:string
 }
+
+export interface ModalData{
+  title:String,
+  rating:number,
+  comment:string,
+  commentBy:string
+}

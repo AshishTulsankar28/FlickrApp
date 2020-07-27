@@ -10,10 +10,10 @@
   </mat-form-field>
   <span>Rating:</span>
   <mat-form-field>
-    <input type="number" min="1" max="5" matInput [(ngModel)]="curPhoto.rating">
+    <input value="0" type="number" min="1" max="5" matInput [(ngModel)]="curPhoto.rating">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No, Thanks!</button>
-  <button [disabled]="curPhoto.rating>5" mat-button [mat-dialog-close]="curPhoto" cdkFocusInitial>Okay</button>
+  <button [disabled]="curPhoto.rating<0 || curPhoto.rating>5 " mat-button [mat-dialog-close]="curPhoto" cdkFocusInitial>Okay</button>
 </div>

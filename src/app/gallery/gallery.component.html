@@ -2,11 +2,45 @@
 <style>
   #inline{width:100%;display:flex;}
 .one{width:66%;margin:10px;}
-.two{width:17%;margin:10px;border:transparent;background-color: transparent;}
-.three{width:17%;margin:10px;}
+.two{width:17%;margin:10px;border:transparent;background-color: transparent;align-self: center;}
+.three{width:17%;margin:10px;align-self: center;}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:transparent;
+}
+
+li {
+  float: left;
+}
+
+li span {
+  display: block;
+  color:black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* li a:hover:not(.active) {
+  background-color: #4CAF50;
+} 
+
+.active {
+  background-color: #4CAF50;
+}*/
 </style>
 
-<div class="card-columns">
+<ul>
+  <li><span (click)="navigateTo(1)">Food</span></li>
+  <li><span (click)="navigateTo(2)">Breakfast</span></li>
+  <li><span (click)="navigateTo(3)">Nature</span></li>
+</ul>
+
+<div *ngIf="display" class="card-columns">
 <div class="card" *ngFor="let curPhoto of photos | paginate: config" >
    <img class="card-img-top" src="{{curPhoto.imgUrl}}" alt="Alternative Image" />
    <div class="card-body">
@@ -15,8 +49,8 @@
       </p>
       <div id="inline">
         <div class="one">{{curPhoto.title}}</div>
-        <button class="two"><i title="{{curPhoto.comment}}" (click)="openDialog(curPhoto)" class="far fa-comment"></i></button>
-        <div class="three"><i title="{{curPhoto.commentBy}}" class="far fa-user"></i></div>
+        <button  title="{{curPhoto.comment}}" class="two"><i (click)="openDialog(curPhoto)" class="far fa-comment"></i></button>
+        <div title="{{curPhoto.commentBy}}" class="three"><i class="far fa-user"></i></div>
       </div>
       <hr>
       <bar-rating [readOnly]=true [(rate)]="curPhoto.rating" [max]="5"></bar-rating>
@@ -24,6 +58,6 @@
 </div>
 </div>
 <!-- card ends-->
-<div>
+<div *ngIf="display">
   <pagination-controls style="float: right;" (pageChange)="pageChanged($event)"></pagination-controls>
 </div>
